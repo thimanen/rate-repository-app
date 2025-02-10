@@ -1,2 +1,2 @@
-run this in GIT bash to get deploy key working:::
+run this in GIT bash to get deploy key working:
 $ eval `ssh-agent -s`;ssh-add ~/.ssh/id_ed25519; git push

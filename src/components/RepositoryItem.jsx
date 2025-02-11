@@ -12,6 +12,6 @@ const RepositoryItem = ({ repo }) => {
       <Text>Rating: {repo.ratingAverage}</Text>
     </View>
   );
-};
+}
 
 export default RepositoryItem;

@@ -13,9 +13,8 @@ const styles = StyleSheet.create({
     height: 100,
     alignItems: "center",
     justifyContent: "flex-start",
-    marginLeft: 10,
-    marginRight: 10,
-    gap: 10,
+    marginLeft: 5,
+    marginRight: 5,
   },
 });
 

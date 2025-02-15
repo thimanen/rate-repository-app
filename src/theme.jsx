@@ -2,8 +2,10 @@ const theme = {
   colors: {
     textPrimary: "#24292e",
     textSecondary: "#586069",
+    textWhite: "white",
     primary: "#0366d6",
-    repositoryBackground: "#E6E8d6",
+    repositoryMainBackground: "#e1e4e8",
+    repositoryItemBackground: "white",
     AppBarBackground: "#24292e",
     AppBarText: "#e7ebe6",
   },

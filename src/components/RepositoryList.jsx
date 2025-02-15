@@ -1,5 +1,6 @@
 import { FlatList, View, StyleSheet } from "react-native";
 import RepositoryItem from "./RepositoryItem";
+import theme from "../theme";
 
 const repositories = [
   {
@@ -57,6 +58,7 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     marginRight: 10,
     marginTop: 10,
+    backgroundColor: theme.colors.repositoryMainBackground,
   },
 });
 

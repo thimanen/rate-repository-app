@@ -3,6 +3,7 @@ const theme = {
     textPrimary: "#24292e",
     textSecondary: "#586069",
     textWhite: "white",
+    textError: "#d73a4a",
     primary: "#0366d6",
     repositoryMainBackground: "#e1e4e8",
     repositoryItemBackground: "white",

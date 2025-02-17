@@ -1,5 +1,5 @@
 import Text from "./Text";
-import { View, TextInput, Pressable, StyleSheet } from "react-native";
+import { View, TextInput, Pressable, StyleSheet, Platform } from "react-native";
 import { useFormik } from "formik";
 import * as yup from "yup";
 
@@ -23,6 +23,11 @@ const styles = StyleSheet.create({
     fontSize: theme.fontSizes.subheading,
     paddingLeft: 5,
     marginBottom: 20,
+    fontFamily: Platform.select({
+      android: theme.fonts.android,
+      ios: theme.fonts.ios,
+      default: theme.fonts.main,
+    }),
   },
   submit: {
     backgroundColor: theme.colors.primary,
@@ -33,7 +38,7 @@ const styles = StyleSheet.create({
   },
   onError: {
     color: theme.colors.textError,
-    paddingBottom:10,
+    paddingBottom: 10,
   },
 });
 

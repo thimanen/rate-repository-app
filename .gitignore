@@ -30,6 +30,10 @@ yarn-error.*
 
 # local env files
 .env*.local
+.env
 
 # typescript
 *.tsbuildinfo
+
+# own files
+set_deploy_key.sh

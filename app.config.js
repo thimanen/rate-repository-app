@@ -31,5 +31,6 @@ export default {
       env: process.env.ENV,
       apollo_uri: process.env.APOLLO_URI,
     },
+    plugins: ["expo-secure-store"],
   },
 };

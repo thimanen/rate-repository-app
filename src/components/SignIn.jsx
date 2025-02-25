@@ -1,10 +1,12 @@
 import Text from "./Text";
 import { View, TextInput, Pressable, StyleSheet, Platform } from "react-native";
+import { useNavigate } from "react-router-native";
 import { useFormik } from "formik";
 import * as yup from "yup";
 
 import theme from "../theme";
 import useSignIn from "../hooks/useSignIn";
+import useAuthStorage from "../hooks/useAuthStorage";
 
 const styles = StyleSheet.create({
   flexContainer: {
@@ -50,13 +52,22 @@ const validationSchema = yup.object().shape({
 
 const SignIn = () => {
   const [signIn] = useSignIn();
+  const navigate = useNavigate();
+  const authStorage = useAuthStorage();
 
   const onSubmit = async (values) => {
     const { username, password } = values;
 
     try {
       const { data } = await signIn({ username, password });
-      console.log(data);
+      navigate("/");
+
+
+      /* this cna be removed */
+      (async () => {
+        let value = await authStorage.getAccessToken();
+        console.log("let_s see what we have in securestore: ", value);
+      })();
     } catch (e) {
       console.log(e);
     }

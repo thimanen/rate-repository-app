@@ -16,12 +16,9 @@ class AuthStorage {
       `${this.namespace}-accessToken`
     );
     if (accessToken) {
-      console.log("GET: the key: ", `${this.namespace}-accessToken`);
-      console.log("GET: the value: ", accessToken);
-      /*
-    return accessToken ? JSON.parse(accessToken) : [];
-    */
-      return accessToken;
+      return accessToken ? JSON.parse(accessToken) : [];
+
+      /*return accessToken;*/
     }
   }
 
@@ -36,8 +33,6 @@ class AuthStorage {
       `${this.namespace}-accessToken`,
       JSON.stringify(accessToken)
     );
-    console.log("SET: the key: ", `${this.namespace}-accessToken`);
-    console.log("SET: the value: ", JSON.stringify(accessToken));
   }
 
   async removeAccessToken() {

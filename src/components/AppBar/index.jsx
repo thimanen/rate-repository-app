@@ -1,9 +1,9 @@
 import { View, StyleSheet, ScrollView } from "react-native";
-import { Link } from "react-router-native";
 import Constants from "expo-constants";
-import Text from "../Text";
 import AppBarTab from "./AppBarTab";
 import theme from "../../theme";
+import { useQuery } from "@apollo/client";
+import { GET_ME } from "../../graphql/queries";
 
 const styles = StyleSheet.create({
   container: {
@@ -23,15 +23,32 @@ const styles = StyleSheet.create({
 });
 
 const AppBar = () => {
+  const getMe = useQuery(GET_ME, {
+    fetchPolicy: "cache-and-network",
+  });
+
+  if (getMe.loading) return null;
+
+  const isSignedIn = getMe.data.me ? true : false;
+
   return (
     <View style={styles.container}>
       <ScrollView horizontal={true}>
         <AppBarTab title="Repositories" toLink="/" style={{ marginLeft: 25 }} />
-        <AppBarTab
-          title="Sign in"
-          toLink="/signin"
-          style={{ marginLeft: 25 }}
-        />
+        {!isSignedIn && (
+          <AppBarTab
+            title="Sign in"
+            toLink="/signin"
+            style={{ marginLeft: 25 }}
+          />
+        )}
+        {isSignedIn && (
+          <AppBarTab
+            title="Sign out"
+            toLink="/signout"
+            style={{ marginLeft: 25 }}
+          />
+        )}
       </ScrollView>
     </View>
   );

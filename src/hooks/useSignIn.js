@@ -9,21 +9,26 @@ const useSignIn = () => {
     onError: (error) => {
       console.log("graphQLerror: ", error.graphQLErrors[0].message);
     },
+    fetchPolicy: "no-cache",
   });
 
   const signIn = async ({ username, password }) => {
-    const response = await authenticate({
-      variables: {
-        credentials: {
-          username,
-          password,
+    try {
+      const response = await authenticate({
+        variables: {
+          credentials: {
+            username,
+            password,
+          },
         },
-      },
-    });
-    await authStorage.setAccessToken(response.data.authenticate.accessToken);
-    apolloClient.resetStore();
+      });
+      await authStorage.setAccessToken(response.data.authenticate.accessToken);
+      await apolloClient.resetStore();
 
-    return response;
+      return response;
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   return [signIn, result];

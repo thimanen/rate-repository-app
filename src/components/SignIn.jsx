@@ -59,15 +59,8 @@ const SignIn = () => {
     const { username, password } = values;
 
     try {
-      const { data } = await signIn({ username, password });
+      await signIn({ username, password });
       navigate("/");
-
-
-      /* this cna be removed */
-      (async () => {
-        let value = await authStorage.getAccessToken();
-        console.log("let_s see what we have in securestore: ", value);
-      })();
     } catch (e) {
       console.log(e);
     }

@@ -41,7 +41,7 @@ const convertNumber = (number) => {
 
 const RepositoryItem = ({ repo }) => {
   return (
-    <View style={styles.flexContainer}>
+    <View testID="repositoryItem" style={styles.flexContainer}>
       <View style={styles.flexItemContainer}>
         <Image
           style={styles.avatarImage}

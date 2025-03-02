@@ -1,9 +1,9 @@
-import { render, screen, within } from "@testing-library/react-native";
+import { render, screen } from "@testing-library/react-native";
 import { RepositoryListContainer } from "../components/RepositoryList";
 
 describe("RepositoryList", () => {
   describe("RepositoryListContainer", () => {
-    it.only("renders repository information correctly", () => {
+    it("renders repository information correctly", () => {
       const repositories = {
         totalCount: 8,
         pageInfo: {
@@ -48,7 +48,7 @@ describe("RepositoryList", () => {
       };
 
       render(<RepositoryListContainer repositories={repositories} />);
-      screen.debug();
+      /* screen.debug(); */
 
       const repositoryItems = screen.getAllByTestId("repositoryItem");
       const [firstRepositoryItem, secondRepositoryItem] = repositoryItems;

@@ -45,26 +45,11 @@ const styles = StyleSheet.create({
   },
 });
 
-const validationSchema = yup.object().shape({
-  username: yup.string().min(1, "too short").required("Username is required"),
-  password: yup.string().min(1, "too short").required("Password is required"),
-});
-
-const SignIn = () => {
-  const [signIn] = useSignIn();
-  const navigate = useNavigate();
-  const authStorage = useAuthStorage();
-
-  const onSubmit = async (values) => {
-    const { username, password } = values;
-
-    try {
-      await signIn({ username, password });
-      navigate("/");
-    } catch (e) {
-      console.log(e);
-    }
-  };
+export const SignInContainer = ({ onSubmit }) => {
+  const validationSchema = yup.object().shape({
+    username: yup.string().min(1, "too short").required("Username is required"),
+    password: yup.string().min(1, "too short").required("Password is required"),
+  });
 
   const formik = useFormik({
     initialValues: {
@@ -115,6 +100,25 @@ const SignIn = () => {
       </Pressable>
     </View>
   );
+};
+
+const SignIn = () => {
+  const [signIn] = useSignIn();
+  const navigate = useNavigate();
+  const authStorage = useAuthStorage();
+
+  const onSubmit = async (values) => {
+    const { username, password } = values;
+
+    try {
+      await signIn({ username, password });
+      navigate("/");
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  return <SignInContainer onSubmit={onSubmit} />;
 };
 
 export default SignIn;

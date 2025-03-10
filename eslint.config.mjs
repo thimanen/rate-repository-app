@@ -18,6 +18,7 @@ export default [...compat.extends("eslint:recommended", "plugin:react/recommende
     plugins: {
         react,
         "react-native": reactNative,
+        "react-hooks"
     },
 
     languageOptions: {
@@ -37,5 +38,7 @@ export default [...compat.extends("eslint:recommended", "plugin:react/recommende
     rules: {
         "react/prop-types": "off",
         "react/react-in-jsx-scope": "off",
+        "react-hooks/rules-of-hooks": "error",
+        "react-hooks/exhaustive-deps": "warn"
     },
 }];

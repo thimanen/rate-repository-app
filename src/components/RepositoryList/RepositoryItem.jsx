@@ -1,4 +1,5 @@
-import { View, StyleSheet, Image } from "react-native";
+import { View, StyleSheet, Image, Button, Alert } from "react-native";
+import * as Linking from "expo-linking";
 import Text from "../Text";
 import theme from "../../theme";
 
@@ -39,7 +40,7 @@ const convertNumber = (number) => {
   return number;
 };
 
-const RepositoryItem = ({ repo }) => {
+const RepositoryItem = ({ repo, isGitHubButton }) => {
   return (
     <View testID="repositoryItem" style={styles.flexContainer}>
       <View style={styles.flexItemContainer}>
@@ -84,6 +85,15 @@ const RepositoryItem = ({ repo }) => {
           <Text color="textSecondary">Rating</Text>
         </View>
       </View>
+      {isGitHubButton && (
+        <View style={styles.language.borderRadius}>
+          <Button
+            onPress={() => Linking.openURL(repo.url)}
+            title="Open in GitHub"
+            color={styles.language.backgroundColor}
+          />
+        </View>
+      )}
     </View>
   );
 };

@@ -15,6 +15,7 @@ const styles = StyleSheet.create({
     backgroundColor: theme.colors.repositoryItemBackground,
     gap: 5,
     alignItems: "flex-start",
+    flexShrink: 1,
   },
   flexItemContainer: {
     display: "flex",

@@ -5,6 +5,7 @@ import Text from "../Text";
 import theme from "../../theme";
 import useRepositories from "../../hooks/useRepositories";
 import useRepository from "../../hooks/useRepository";
+import SingleRepository from "./SingleRepository";
 
 const styles = StyleSheet.create({
   separator: {
@@ -53,7 +54,7 @@ const RepositoryList = () => {
     if (loading) return <Text>Loading....</Text>;
     if (error) return <Text>Error: {error.message}</Text>;
 
-    return <RepositoryItem repo={data.repository} isGitHubButton={true} />;
+    return <SingleRepository repository={data.repository} />;
   }
 };
 

@@ -13,6 +13,8 @@ const styles = StyleSheet.create({
       ios: theme.fonts.ios,
       default: theme.fonts.main,
     }),
+    flexWrap: "wrap",
+    flexShrink: 1,
   },
   colorTextSecondary: {
     color: theme.colors.textSecondary,
@@ -29,6 +31,9 @@ const styles = StyleSheet.create({
   fontSizeSubheading: {
     fontSize: theme.fontSizes.subheading,
   },
+  fontSizeRating: {
+    fontSize: theme.fontSizes.rating,
+  },
   fontWeightBold: {
     fontWeight: theme.fontWeights.bold,
   },
@@ -42,6 +47,7 @@ const Text = ({ color, fontSize, fontWeight, style, ...props }) => {
     color === "AppBarText" && styles.colorAppBarText,
     color === "textWhite" && styles.colorTextWhite,
     fontSize === "subheading" && styles.fontSizeSubheading,
+    fontSize === "rating" && styles.fontSizeRating,
     fontWeight === "bold" && styles.fontWeightBold,
     style,
   ];

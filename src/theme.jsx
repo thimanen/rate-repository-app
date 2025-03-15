@@ -13,6 +13,7 @@ const theme = {
   fontSizes: {
     body: 14,
     subheading: 16,
+    rating: 18,
   },
   fonts: {
     main: "System",

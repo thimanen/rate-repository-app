@@ -42,6 +42,14 @@ const AppBar = () => {
             style={{ marginLeft: 25 }}
           />
         )}
+        {!isSignedIn && (
+          <AppBarTab
+            title="Sign Up"
+            toLink="/signup"
+            style={{ marginLeft: 25 }}
+          />
+        )}
+
         {isSignedIn && (
           <AppBarTab
             title="Create a review"

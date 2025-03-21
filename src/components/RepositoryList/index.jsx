@@ -26,21 +26,32 @@ const styles = StyleSheet.create({
     marginTop: 10,
     backgroundColor: theme.colors.repositoryMainBackground,
   },
+  selectList: {
+    flexDirection: "row",
+    marginTop: 10,
+    marginBottom: 10,
+    justifyContent: "space-around",
+    backgroundColor: "white",
+  },
 });
 
 const ItemSeparator = () => <View style={styles.separator} />;
 
 export const OrderSelector = ({ order, setOrder }) => {
-  const options = [
-    "Latest repositories",
-    "Highest rated repositories",
-    "Lowest rated repositories",
-  ];
+  const options = ["Latest", "Highest rated", "Lowest rated"];
   return (
-    <View>
+    <View style={styles.selectList}>
       {options.map((option, index) => (
         <TouchableOpacity key={index} onPress={() => setOrder(option)}>
-          <Text>{option}</Text>
+          <Text
+            fontSize="subheading"
+            style={{
+              borderRadius: 5,
+              backgroundColor: option == order ? theme.colors.primary : "white",
+            }}
+          >
+            {option}
+          </Text>
         </TouchableOpacity>
       ))}
     </View>

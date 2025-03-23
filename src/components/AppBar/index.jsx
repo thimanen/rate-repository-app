@@ -60,6 +60,14 @@ const AppBar = () => {
 
         {isSignedIn && (
           <AppBarTab
+            title="My reviews"
+            toLink="/myreviews"
+            style={{ marginLeft: 25 }}
+          />
+        )}
+
+        {isSignedIn && (
+          <AppBarTab
             title="Sign out"
             toLink="/signout"
             style={{ marginLeft: 25 }}

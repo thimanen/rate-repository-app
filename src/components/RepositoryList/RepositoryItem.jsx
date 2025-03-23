@@ -1,3 +1,4 @@
+
 import { View, StyleSheet, Image, Button, Alert } from "react-native";
 import * as Linking from "expo-linking";
 import Text from "../Text";

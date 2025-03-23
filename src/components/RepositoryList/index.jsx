@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, memo } from "react";
 import { useDebounce } from "use-debounce";
 import {
   FlatList,
@@ -52,45 +52,42 @@ const styles = StyleSheet.create({
 
 const ItemSeparator = () => <View style={styles.separator} />;
 
-export const OrderSearchSelector = ({
-  order,
-  setOrder,
-  instantSearchKeyword,
-  setSearchKeyword,
-}) => {
-  const options = ["Latest", "Highest rated", "Lowest rated"];
-  return (
-    <View>
-      <View style={styles.searchInput}>
-        <TextInput
-          style={styles.textInput}
-          placeholder="search string"
-          value={instantSearchKeyword}
-          onChangeText={(text) => setSearchKeyword(text)}
-        />
-        <View style={styles.selectList}>
-          {options.map((option, index) => (
-            <TouchableOpacity key={index} onPress={() => setOrder(option)}>
-              <Text
-                fontSize="subheading"
-                style={{
-                  marginTop: 5,
-                  marginBottom: 5,
-                  borderRadius: 5,
-                  backgroundColor:
-                    option == order ? theme.colors.primary : "white",
-                  color: option == order ? theme.colors.textWhite : "black",
-                }}
-              >
-                {option}
-              </Text>
-            </TouchableOpacity>
-          ))}
+export const OrderSearchSelector = memo(
+  ({ order, setOrder, instantSearchKeyword, setSearchKeyword }) => {
+    const options = ["Latest", "Highest rated", "Lowest rated"];
+    return (
+      <View>
+        <View style={styles.searchInput}>
+          <TextInput
+            style={styles.textInput}
+            placeholder="search string"
+            value={instantSearchKeyword}
+            onChangeText={(text) => setSearchKeyword(text)}
+          />
+          <View style={styles.selectList}>
+            {options.map((option, index) => (
+              <TouchableOpacity key={index} onPress={() => setOrder(option)}>
+                <Text
+                  fontSize="subheading"
+                  style={{
+                    marginTop: 5,
+                    marginBottom: 5,
+                    borderRadius: 5,
+                    backgroundColor:
+                      option == order ? theme.colors.primary : "white",
+                    color: option == order ? theme.colors.textWhite : "black",
+                  }}
+                >
+                  {option}
+                </Text>
+              </TouchableOpacity>
+            ))}
+          </View>
         </View>
       </View>
-    </View>
-  );
-};
+    );
+  }
+);
 
 export const RepositoryListContainer = ({
   repositories,
@@ -113,14 +110,14 @@ export const RepositoryListContainer = ({
           <RepositoryItem repo={item} isGitHubButton={false} />
         </Pressable>
       )}
-      ListHeaderComponent={() => (
+      ListHeaderComponent={
         <OrderSearchSelector
           order={order}
           setOrder={setOrder}
           instantSearchKeyword={instantSearchKeyword}
           setSearchKeyword={setSearchKeyword}
         />
-      )}
+      }
     />
   );
 };

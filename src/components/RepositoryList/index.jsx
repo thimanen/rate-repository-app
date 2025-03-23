@@ -46,8 +46,11 @@ export const OrderSelector = ({ order, setOrder }) => {
           <Text
             fontSize="subheading"
             style={{
+              marginTop: 5,
+              marginBottom: 5,
               borderRadius: 5,
               backgroundColor: option == order ? theme.colors.primary : "white",
+              color: option == order ? theme.colors.textWhite : "black",
             }}
           >
             {option}
@@ -81,8 +84,8 @@ export const RepositoryListContainer = ({ repositories, order, setOrder }) => {
 };
 
 const RepositoryList = () => {
-  const [order, setOrder] = useState("latest");
-  const { repositories } = useRepositories(order);
+  const [order, setOrder] = useState("Latest");
+  const { repositories } = useRepositories({ order });
   const { repoId } = useParams();
   const { loading, error, data } = useRepository(repoId);
 

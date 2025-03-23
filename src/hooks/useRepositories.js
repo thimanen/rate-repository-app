@@ -2,15 +2,13 @@ import { useQuery } from "@apollo/client";
 
 import { GET_REPOSITORIES } from "../graphql/queries";
 
-const useRepositories = ({ order }) => {
-  console.log("used order: ", order);
-
+const useRepositories = ({ order, searchKeyword }) => {
   const orderBy = order == "Latest" ? "CREATED_AT" : "RATING_AVERAGE";
   const orderDirection =
     order == "Latest" || order == "Highest rated" ? "DESC" : "ASC";
 
   const getRepositories = useQuery(GET_REPOSITORIES, {
-    variables: { orderBy, orderDirection },
+    variables: { orderBy, orderDirection, searchKeyword },
     fetchPolicy: "cache-and-network",
   });
 

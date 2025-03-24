@@ -29,15 +29,15 @@ const MyReviews = () => {
     : [];
 
   return (
-    <View>
-      <FlatList
-        style={styles.flexContainer}
-        data={reviewNodes}
-        ItemSeparatorComponent={ItemSeparator}
-        renderItem={({ item }) => <ReviewItem review={item} />}
-        keyExtractor={({ id }) => id}
-      />
-    </View>
+    <FlatList
+      style={styles.flexContainer}
+      data={reviewNodes}
+      ItemSeparatorComponent={ItemSeparator}
+      renderItem={({ item }) => (
+        <ReviewItem review={item} reviewActions={true} />
+      )}
+      keyExtractor={({ id }) => id}
+    />
   );
 };
 

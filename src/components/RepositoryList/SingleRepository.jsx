@@ -1,8 +1,9 @@
-import { FlatList, View, StyleSheet } from "react-native";
-import format from "date-fns/format"
+import { FlatList, View, StyleSheet, Button } from "react-native";
+import format from "date-fns/format";
 import RepositoryInfo from "./RepositoryInfo";
 import Text from "../Text";
 import theme from "../../theme";
+import { useNavigate } from "react-router-native";
 
 const styles = StyleSheet.create({
   separator: {
@@ -22,6 +23,15 @@ const styles = StyleSheet.create({
     gap: 5,
     flexDirection: "row",
     marginTop: 5,
+  },
+  flexContainerAction: {
+    display: "flex",
+    backgroundColor: theme.colors.repositoryItemBackground,
+    gap: 5,
+    flexDirection: "row",
+    justifyContent: "space-evenly",
+    paddingTop: 10,
+    paddingBottom: 10,
   },
   ratingContainer: {
     width: 40,
@@ -48,20 +58,49 @@ const styles = StyleSheet.create({
     gap: 5,
     flexShrink: 1,
   },
+  reviewActionView: {
+    backgroundColor: theme.colors.primary,
+    borderRadius: 5,
+  },
+  reviewActionDelete: {
+    backgroundColor: theme.colors.delete,
+    borderRadius: 5,
+  },
 });
 
-export const ReviewItem = ({ review }) => {
+export const ReviewItem = ({ review, reviewActions }) => {
+  let navigate = useNavigate();
   return (
-    <View>
+    <View style={styles.flexContainer}>
       <View style={styles.flexContainerReview}>
         <View style={styles.ratingContainer}>
           <Text style={styles.ratingNumber}>{review.rating}</Text>
         </View>
         <View style={styles.flexContainerData}>
           <Text fontWeight="bold">{review.user.username}</Text>
-          <Text color="textSecondary">{format(review.createdAt,"d.M.y")}</Text>
+          <Text color="textSecondary">{format(review.createdAt, "d.M.y")}</Text>
           <Text color="textPrimary">{review.text}</Text>
         </View>
+      </View>
+      <View style={styles.flexContainerAction}>
+        {reviewActions && (
+          <View style={styles.reviewActionView.borderRadius}>
+            <Button
+              onPress={() => navigate(`/${review.repositoryId}`)}
+              title="View repository"
+              color={styles.reviewActionView.backgroundColor}
+            />
+          </View>
+        )}
+        {reviewActions && (
+          <View style={styles.reviewActionDelete.borderRadius}>
+            <Button
+              onPress={() => navigate(`/${review.repositoryId}`)}
+              title="Delete review"
+              color={styles.reviewActionDelete.backgroundColor}
+            />
+          </View>
+        )}
       </View>
     </View>
   );
@@ -78,7 +117,9 @@ const SingleRepository = ({ repository }) => {
       style={styles.flexContainer}
       data={reviewNodes}
       ItemSeparatorComponent={ItemSeparator}
-      renderItem={({ item }) => <ReviewItem review={item} />}
+      renderItem={({ item }) => (
+        <ReviewItem review={item} reviewActions={false} />
+      )}
       keyExtractor={({ id }) => id}
       ListHeaderComponent={() => <RepositoryInfo repository={repository} />}
     />

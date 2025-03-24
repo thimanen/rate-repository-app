@@ -5,6 +5,7 @@ const theme = {
     textWhite: "white",
     textError: "#d73a4a",
     primary: "#0366d6",
+    delete: "#dc143c",
     repositoryMainBackground: "#e1e4e8",
     repositoryItemBackground: "white",
     AppBarBackground: "#24292e",

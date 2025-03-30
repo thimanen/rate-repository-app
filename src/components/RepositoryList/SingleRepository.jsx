@@ -4,6 +4,7 @@ import RepositoryInfo from "./RepositoryInfo";
 import Text from "../Text";
 import theme from "../../theme";
 import { useNavigate } from "react-router-native";
+import useDeleteReview from "../../hooks/useDeleteReview";
 
 const styles = StyleSheet.create({
   separator: {
@@ -68,8 +69,21 @@ const styles = StyleSheet.create({
   },
 });
 
-export const ReviewItem = ({ review, reviewActions }) => {
+export const ReviewItem = ({ review, reviewActions, refetch }) => {
+  const [deleteReview] = useDeleteReview();
   let navigate = useNavigate();
+
+  const onDelete = async () => {
+    try {
+      let deleteReviewId = review.id;
+      const response = await deleteReview({ deleteReviewId });
+      navigate(`/Myreviews`);
+    } catch (e) {
+      console.log(e);
+    }
+    refetch();
+  };
+
   return (
     <View style={styles.flexContainer}>
       <View style={styles.flexContainerReview}>
@@ -95,7 +109,7 @@ export const ReviewItem = ({ review, reviewActions }) => {
         {reviewActions && (
           <View style={styles.reviewActionDelete.borderRadius}>
             <Button
-              onPress={() => navigate(`/${review.repositoryId}`)}
+              onPress={() => onDelete()}
               title="Delete review"
               color={styles.reviewActionDelete.backgroundColor}
             />

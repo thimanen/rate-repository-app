@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
 const ItemSeparator = () => <View style={styles.separator} />;
 
 const MyReviews = () => {
-  const { loading, error, data } = useMyReview();
+  const { loading, error, data, refetch } = useMyReview();
   if (loading) return <Text>Loading....</Text>;
   if (error) return <Text>Error: {error.message}</Text>;
 
@@ -34,7 +34,7 @@ const MyReviews = () => {
       data={reviewNodes}
       ItemSeparatorComponent={ItemSeparator}
       renderItem={({ item }) => (
-        <ReviewItem review={item} reviewActions={true} />
+        <ReviewItem review={item} reviewActions={true} refetch={refetch} />
       )}
       keyExtractor={({ id }) => id}
     />
